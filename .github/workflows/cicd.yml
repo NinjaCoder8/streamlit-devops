@@ -41,15 +41,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-
-      - name: Post Deployment 
-        uses: appleboy/ssh-action@v1.0.3
-        with: 
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22 
-          script: |
+          SCRIPT_AFTER: | 
             echo "Updating the package list" 
             sudo apt update 
             echo "Installing pip" 
