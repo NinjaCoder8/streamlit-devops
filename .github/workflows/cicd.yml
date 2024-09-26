@@ -61,4 +61,4 @@ jobs:
             echo "Installing the requirements" 
             python3 -m pip install -r requirements.txt 
             echo "Running Streamlit" 
-            sudo nohup streamlit run app.py --server.port 80 
+            sudo nohup venv/bin/streamlit run app.py --server.port 80 
