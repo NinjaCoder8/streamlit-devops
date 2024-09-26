@@ -41,3 +41,16 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
+
+      - name: Post Deployment 
+        uses: appleboy/ssh-action@v1.0.3
+        with: 
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22 
+          script: |   
+            sudo apt update 
+            sudo apt install -y python3-pip 
+            python3 -m pip install -r requirements.txt 
+            sudo nohup streamlit run app.py --server.port 80 
