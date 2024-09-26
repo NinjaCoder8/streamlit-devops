@@ -49,8 +49,16 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22 
-          script: |   
+          script: |
+            echo "Updating the package list" 
             sudo apt update 
-            sudo apt install -y python3-pip 
+            echo "Installing pip" 
+            sudo apt install -y python3-pip python3-venv
+            echo "Enable the Virtual Env" 
+            python3 -m venv venv 
+            echo "Activate the venv" 
+            source venv/bin/activate
+            echo "Installing the requirements" 
             python3 -m pip install -r requirements.txt 
+            echo "Running Streamlit" 
             sudo nohup streamlit run app.py --server.port 80 
