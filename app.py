@@ -28,7 +28,7 @@ def main():
     """
     Main function to render the Streamlit app.
     """
-    st.title("Recipe Finder")
+    st.title("Recipe Finder - New Version")
 
     ingredients_input = st.text_input("Enter ingredients (comma separated)")
 
